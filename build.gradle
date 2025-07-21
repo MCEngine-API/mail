@@ -3,24 +3,26 @@ plugins {
     id 'java'
 }
 
-// Set project version using a property, defaulting to 'unspecified' if not found
-version = project.properties[project.name + '.version'] ?: 'undefined'
+// Set project version using a property
+version = project.properties[project.name + '.version']
 group = 'io.github.mcengine'
 
 ext {
     // User
-    user_git_name = System.getenv('USER_GIT_NAME') ?: 'null'
+    user_git_name = System.getenv('USER_GIT_NAME')
 
     // GitHub
-    user_github_token = System.getenv('USER_GITHUB_TOKEN') ?: ''
+    user_github_token = System.getenv('USER_GITHUB_TOKEN')
 
     // Organization
-    organization_name = System.getenv('ORGANIZATION_NAME') ?: 'MCEngine'
-    organization_token = System.getenv('ORGANIZATION_TOKEN') ?: 'null'
+    organization_id = System.getenv('ORGANIZATION_ID')
+    organization_name = System.getenv('ORGANIZATION_NAME') ?: 'MCEngine-API'
+    organization_token = System.getenv('ORGANIZATION_TOKEN')
 
     // Repository
-    repository_name = System.getenv('REPOSITORY_NAME') ?: 'mail-api'
-    repository_token = System.getenv('REPOSITORY_TOKEN') ?: 'null'
+    repository_id = System.getenv('REPOSITORY_ID')
+    repository_name = System.getenv('REPOSITORY_NAME') ?: 'mail'
+    repository_token = System.getenv('REPOSITORY_TOKEN')
 
     /* Project Information */
     jarName = System.getenv('PROJECT_NAME') ?: 'MCEngineMail'
@@ -58,7 +60,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'com.github.johnrengelman.shadow'
 
-    version = project.properties[project.name + '.version'] ?: 'undefined'
+    version = project.properties[project.name + '.version']
 
     tasks.named('jar').configure {
         enabled = false
